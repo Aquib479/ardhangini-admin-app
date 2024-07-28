@@ -1,25 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
+import "bootstrap/dist/css/bootstrap.css";
+import './'
 import './App.css';
+import Index from './component/index';
+import { RootContext, rootContext } from './context/root.context';
 
 function App() {
+  const rootContextData: RootContext = {
+    appName: 'ardhangini-admin-app'
+  };
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <rootContext.Provider value={rootContextData}>
+    <Index></Index>
+    </rootContext.Provider>
   );
 }
 
