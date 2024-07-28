@@ -11,29 +11,31 @@ import "react-toastify/dist/ReactToastify.css";
 function index() {
   return (
     <>
-      <section className="brandlogo-sec py-2 d-none d-md-block">
-        <div className="container">
+      <section className="brandlogo-sec py-3 bg-light d-none d-md-block">
+        <div className="container-fluid">
           <div className="row align-items-center">
             <div className="col-md-2">
               <a href="/">
-                <img src={logo} alt="Logo" className="img-fluid" width="130" />
+                <img src={logo} alt="Logo" className="img-fluid" width="80" />
               </a>
+            </div>
+            <div className="col-md-10 text-end">
+              <a href="/" className="btn btn-primary">Logout</a>
             </div>
           </div>
         </div>
       </section>
-      <section>
+      <section className="py-5 bg-dark">
         <div className="container-fluid">
-          <div className="d-flex align-items-start">
+          <div className="d-flex align-items-start d-flex flex-row flex-shrink-0 p-3 text-white">
             <div
               className="nav flex-column nav-pills me-3"
               id="v-pills-tab"
               role="tablist"
               aria-orientation="vertical"
-              style={{borderStyle: 'solid', borderWidth: '0.5px', backgroundColor: '#D6D6E1'}}
             >
               <button
-                className="nav-link active"
+                className="text-start nav-link text-light active"
                 id="v-pills-home-tab"
                 data-bs-toggle="pill"
                 data-bs-target="#v-pills-home"
@@ -45,7 +47,7 @@ function index() {
                 Category Manager
               </button>
               <button
-                className="nav-link"
+                className="text-start nav-link text-light"
                 id="v-pills-profile-tab"
                 data-bs-toggle="pill"
                 data-bs-target="#v-pills-profile"
@@ -57,7 +59,7 @@ function index() {
                 SubCategory Manager
               </button>
               <button
-                className="nav-link"
+                className="text-start nav-link text-light"
                 id="v-pills-messages-tab"
                 data-bs-toggle="pill"
                 data-bs-target="#v-pills-messages"
@@ -69,7 +71,7 @@ function index() {
                 Fabric Manager
               </button>
               <button
-                className="nav-link"
+                className="text-start nav-link text-light"
                 id="v-pills-settings-tab"
                 data-bs-toggle="pill"
                 data-bs-target="#v-pills-settings"
@@ -81,7 +83,7 @@ function index() {
                 Product Type Manager
               </button>
               <button
-                className="nav-link"
+                className="text-start nav-link text-light"
                 id="v-pills-product-tab"
                 data-bs-toggle="pill"
                 data-bs-target="#v-pills-product"
@@ -93,7 +95,7 @@ function index() {
                 Product Manager
               </button>
               <button
-                className="nav-link"
+                className="text-start nav-link text-light"
                 id="v-pills-manufacturer-tab"
                 data-bs-toggle="pill"
                 data-bs-target="#v-pills-manufacturer"
@@ -105,7 +107,7 @@ function index() {
                 Manufacturer Manager
               </button>
             </div>
-            <div className="tab-content col-10" id="v-pills-tabContent">
+            <div className="tab-content col-10 px-4 py-5 bg-light" id="v-pills-tabContent">
               <div
                 className="tab-pane fade show active"
                 id="v-pills-home"
