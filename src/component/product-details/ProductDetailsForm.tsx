@@ -101,7 +101,7 @@ function ProductDetailsForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* product type */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="productType" className="col-sm-4 col-form-label">
           Product Type:
         </label>
@@ -122,7 +122,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/* category  */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="category" className="col-sm-4 col-form-label">
           Category Name :{" "}
         </label>
@@ -144,7 +144,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/* sub-category  */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="sub-category" className="col-sm-4 col-form-label">
           SubCategory Name :{" "}
         </label>
@@ -165,7 +165,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/* manufacturers  */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="manufacturer" className="col-sm-4 col-form-label">
           Manufacturer Name :{" "}
         </label>
@@ -185,7 +185,7 @@ function ProductDetailsForm() {
           </select>
         </div>
       </div>
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="productname" className="col-sm-4 col-form-label">
           Manufacturer Name :{" "}
         </label>
@@ -206,7 +206,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/*product description */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label
           htmlFor="product-description"
           className="col-sm-4 col-form-label"
@@ -230,7 +230,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/*product skuid */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="skuid" className="col-sm-4 col-form-label">
           Skuid :{" "}
         </label>
@@ -249,7 +249,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/*product returnExchangePolicy */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label
           htmlFor="returnExchangePolicy"
           className="col-sm-4 col-form-label"
@@ -271,7 +271,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/*product actual price */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="actualprice" className="col-sm-4 col-form-label">
           Actual Price :{" "}
         </label>
@@ -292,7 +292,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/*product offer price */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="offerprice" className="col-sm-4 col-form-label">
           Offer Price :{" "}
         </label>
@@ -313,7 +313,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/*product cgst */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="cgst" className="col-sm-4 col-form-label">
           cgst :{" "}
         </label>
@@ -334,7 +334,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/*product sgst */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="sgst" className="col-sm-4 col-form-label">
           sgst :{" "}
         </label>
@@ -355,7 +355,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/*product length */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="length" className="col-sm-4 col-form-label">
           length :{" "}
         </label>
@@ -376,7 +376,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/*product width */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="width" className="col-sm-4 col-form-label">
           width :{" "}
         </label>
@@ -397,7 +397,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/*product blouse piece included */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label
           htmlFor="isBlousePieceIncluded"
           className="col-sm-4 col-form-label"
@@ -424,7 +424,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/*product blouse piece description */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="blouseDescription" className="col-sm-4 col-form-label">
           blouse Piece description :{" "}
         </label>
@@ -446,7 +446,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/*product maxPerCart */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="maxQuantityPerCart" className="col-sm-4 col-form-label">
           Max Quantity per cart :{" "}
         </label>
@@ -468,7 +468,7 @@ function ProductDetailsForm() {
         </div>
       </div>
       {/* fabric details */}
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="productType" className="col-sm-4 col-form-label">
           Fabric:
         </label>
@@ -488,7 +488,7 @@ function ProductDetailsForm() {
           </select>
         </div>
       </div>
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <div className="col-sm-10">
           <button
             type="submit"

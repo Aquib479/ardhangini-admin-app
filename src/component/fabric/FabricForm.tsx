@@ -24,7 +24,7 @@ function FabricForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="manufacturername" className="col-sm-4 col-form-label">
           Manufacturer Name :{" "}
         </label>
@@ -44,7 +44,7 @@ function FabricForm() {
           {errors.fabricName && <span>This field is required</span>}
         </div>
       </div>
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="origin" className="col-sm-4 col-form-label">
           Origin :{" "}
         </label>
@@ -64,7 +64,7 @@ function FabricForm() {
           {errors.washCare && <span>This field is required</span>}
         </div>
       </div>
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="address" className="col-sm-4 col-form-label">
           address :{" "}
         </label>

@@ -13,7 +13,7 @@ function CategoryFilter() {
   },[]);
   return (
     <form>
-      <div className="form-group row">
+      <div className="form-group row text-dark my-3">
         <label htmlFor="inputEmail3" className="col-sm-4 col-form-label">
           Select category To filter:{" "}
         </label>

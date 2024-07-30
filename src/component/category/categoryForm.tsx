@@ -21,7 +21,7 @@ function CategoryForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="inputEmail3" className="col-sm-4 col-form-label">
           Category Name :{" "}
         </label>
@@ -41,7 +41,7 @@ function CategoryForm() {
           {errors.name && <span>This field is required</span>}
         </div>
       </div>
-      <div className="form-group row">
+      <div className="form-group row mb-3">
         <label htmlFor="inputPassword3" className="col-sm-4 col-form-label">
           Category Description :{" "}
         </label>

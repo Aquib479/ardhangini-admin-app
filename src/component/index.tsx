@@ -35,7 +35,7 @@ function index() {
               aria-orientation="vertical"
             >
               <button
-                className="text-start nav-link text-light active"
+                className="text-start nav-link text-light my-2 active"
                 id="v-pills-home-tab"
                 data-bs-toggle="pill"
                 data-bs-target="#v-pills-home"
@@ -47,7 +47,7 @@ function index() {
                 Category Manager
               </button>
               <button
-                className="text-start nav-link text-light"
+                className="text-start nav-link text-light my-2"
                 id="v-pills-profile-tab"
                 data-bs-toggle="pill"
                 data-bs-target="#v-pills-profile"
@@ -59,7 +59,7 @@ function index() {
                 SubCategory Manager
               </button>
               <button
-                className="text-start nav-link text-light"
+                className="text-start nav-link text-light my-2"
                 id="v-pills-messages-tab"
                 data-bs-toggle="pill"
                 data-bs-target="#v-pills-messages"
@@ -71,7 +71,7 @@ function index() {
                 Fabric Manager
               </button>
               <button
-                className="text-start nav-link text-light"
+                className="text-start nav-link text-light my-2"
                 id="v-pills-settings-tab"
                 data-bs-toggle="pill"
                 data-bs-target="#v-pills-settings"
@@ -83,7 +83,7 @@ function index() {
                 Product Type Manager
               </button>
               <button
-                className="text-start nav-link text-light"
+                className="text-start nav-link text-light my-2"
                 id="v-pills-product-tab"
                 data-bs-toggle="pill"
                 data-bs-target="#v-pills-product"
@@ -95,7 +95,7 @@ function index() {
                 Product Manager
               </button>
               <button
-                className="text-start nav-link text-light"
+                className="text-start nav-link text-light my-2"
                 id="v-pills-manufacturer-tab"
                 data-bs-toggle="pill"
                 data-bs-target="#v-pills-manufacturer"
@@ -156,6 +156,15 @@ function index() {
               >
                 <ManufacturerGrid></ManufacturerGrid>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="brandlogo-sec bg-light d-none d-md-block">
+        <div className="container-fluid">
+          <div className="row align-items-center">
+            <div className="col-12 text-center text-derk py-3 /">
+              <p className="m-0 fw-bold text-primary">Copyright 2024 © Ardhangini Private Limited. All rights reserved.</p>
             </div>
           </div>
         </div>

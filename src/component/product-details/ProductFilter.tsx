@@ -50,10 +50,10 @@ function ProductFilter() {
   );
 
   return (
-    <div className="container">
-      <div className="row">
+    <div className="container text-dark">
+      <div className="row mb-3">
         <div className="col-6">
-          <div className="row">
+          <div className="row align-items-center">
             <div className="col-6">Product Type: </div>
             <div className="col-6">
               <select
@@ -71,9 +71,9 @@ function ProductFilter() {
           </div>
         </div>
       </div>
-      <div className="row">
+      <div className="row mb-3 align-items-center">
         <div className="col-6">
-          <div className="row">
+          <div className="row mb-3 align-items-center">
             <div className="col-6">Product Category: </div>
             <div className="col-6">
               <select
@@ -89,8 +89,8 @@ function ProductFilter() {
               </select>
             </div>
           </div>
-          <div className="row">
-            <div className="col-4">Product Subcategory: </div>
+          <div className="row align-items-center">
+            <div className="col-6">Product Subcategory: </div>
             <div className="col-4">
               <select
                 id="productSubCategory"
@@ -104,8 +104,8 @@ function ProductFilter() {
                 ))}
               </select>
             </div>
-            <div className="col-4">
-                <button onClick={() => context?.handleFilter(selectedCategory, selectedSubCategory)}>Filter</button>
+            <div className="col-2">
+                <button className="btn btn-primary" onClick={() => context?.handleFilter(selectedCategory, selectedSubCategory)}>Filter</button>
             </div>
           </div>
         </div>
