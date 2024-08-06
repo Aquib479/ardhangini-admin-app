@@ -21,6 +21,7 @@ import CategoryFilter from "./CategoryFilter";
 import SubCategoryModal from "./subcategoryModal";
 
 function SubCategoryGrid() {
+  
   // Row Data: The data to be displayed.
   const [rowData, setRowData] = useState<SubcategoryEntity[]>([]);
   const [title, setTitle] = useState("Add SubCategory");
@@ -29,7 +30,7 @@ function SubCategoryGrid() {
   const [selectedCategory, setSelecetedCategory] = useState<string | null>(
     null
   );
-
+  console.log(`navigated to ${title}`);
   const [categories, setCategories] = useState<CategoryEntity[] | null>(null);
 
   const gridRef = useRef<AgGridReact>(null);

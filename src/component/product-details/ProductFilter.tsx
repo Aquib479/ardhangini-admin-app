@@ -61,7 +61,7 @@ function ProductFilter() {
                 className="form-control"
                 onChange={onProductTypeSelection}
               >
-                {context?.productTypes.map((productType) => (
+                {context?.productTypes?.map((productType) => (
                   <option value={productType?.id} key={productType?.id}>
                     {productType?.name}
                   </option>

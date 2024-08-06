@@ -61,7 +61,7 @@ export const transformToProductSchema = (data: SareeEntity) => {
   snapshot.maxQuantityPerCart = data.maxQuantityPerCart;
   snapshot.offerprice = data.offerprice;
   snapshot.productdescription = data.productDescription;
-  snapshot.productid = data.id;
+  snapshot.productid = data?.id!;
   snapshot.productname = data.productName;
   snapshot.producttype = data.productType.name;
   snapshot.return_exchange_policy = data.returnExchangePolicy;

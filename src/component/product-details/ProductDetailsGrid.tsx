@@ -77,7 +77,7 @@ function ProductDetailsGrid() {
     getAllProductTypes().then((values) => {
       setProductTypes(values);
       if (values && values.length > 0 && !selectedProductType) {
-        getAll(values[0]?.id);
+        getAll(values[0]?.id!);
       }
     });
   };
@@ -134,7 +134,7 @@ function ProductDetailsGrid() {
     setShowSpinner(true);
     let type: string = selectedProductType ? selectedProductType : productType;
     if (!type) {
-      type = productTypes![0]?.id;
+      type = productTypes![0]?.id!;
     }
     try {
       console.trace("calling get all products.");
@@ -218,7 +218,9 @@ function ProductDetailsGrid() {
     },
     selectedProductType: selectedProductType
       ? selectedProductType
-      : productTypes![0]?.id,
+      : productTypes
+      ? productTypes![0]?.id!
+      : "",
     categories: categories!,
     productTypes: productTypes!,
     showFileUploadModal: showFileUploadModal,
@@ -232,9 +234,10 @@ function ProductDetailsGrid() {
         <div className="row">
           <div
             className="col-12 ag-theme-quartz" // applying the Data Grid theme
-            style={{ height: 500 }} // the Data Grid will fill the size of the parent container
+            style={{ height: 800 }} // the Data Grid will fill the size of the parent container
           >
             <AgGridReact
+              rowHeight={120}
               ref={gridRef}
               rowData={rowData}
               columnDefs={colDefs}

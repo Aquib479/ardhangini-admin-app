@@ -22,7 +22,7 @@ function SubCategoryForm() {
   useEffect(() => {
     console.trace(context?.selectedData);
     if(context?.selectedData?.category) {
-      setValue('categoryid', context.selectedData.category.id);
+      setValue('categoryid', context?.selectedData?.category?.id!);
     }
   });
 
