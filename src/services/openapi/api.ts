@@ -489,6 +489,18 @@ export interface CreateProductDto {
      * @memberof CreateProductDto
      */
     'printId'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateProductDto
+     */
+    'maxAllowedReturnDays': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateProductDto
+     */
+    'maxAllowedCancellationDays': number;
 }
 /**
  * 
@@ -696,6 +708,18 @@ export interface CreateProductResponseDto {
      * @memberof CreateProductResponseDto
      */
     'printId'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateProductResponseDto
+     */
+    'maxAllowedReturnDays': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateProductResponseDto
+     */
+    'maxAllowedCancellationDays': number;
     /**
      * 
      * @type {number}
@@ -1365,6 +1389,18 @@ export interface ProductSnapshotDto {
      * @memberof ProductSnapshotDto
      */
     'productPrint': ProductPrintsEntity;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductSnapshotDto
+     */
+    'maxAllowedReturnDays': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductSnapshotDto
+     */
+    'maxAllowedCancellationDays': number;
 }
 /**
  * 
@@ -1516,6 +1552,18 @@ export interface ProductSnapshotWithUserDto {
      * @memberof ProductSnapshotWithUserDto
      */
     'productPrint': ProductPrintsEntity;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductSnapshotWithUserDto
+     */
+    'maxAllowedReturnDays': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductSnapshotWithUserDto
+     */
+    'maxAllowedCancellationDays': number;
     /**
      * 
      * @type {boolean}
@@ -1931,6 +1979,18 @@ export interface SareeEntity {
     'isExclusive': boolean;
     /**
      * 
+     * @type {number}
+     * @memberof SareeEntity
+     */
+    'maxAllowedReturnDays': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SareeEntity
+     */
+    'maxAllowedCancellationDays': number;
+    /**
+     * 
      * @type {SareeDetailsEntity}
      * @memberof SareeEntity
      */
@@ -1941,6 +2001,36 @@ export interface SareeEntity {
      * @memberof SareeEntity
      */
     'productImages': Array<SareeImageEntity>;
+    /**
+     * 
+     * @type {ProductCollectionEntity}
+     * @memberof SareeEntity
+     */
+    'collection': ProductCollectionEntity;
+    /**
+     * 
+     * @type {ProductColorEntity}
+     * @memberof SareeEntity
+     */
+    'colour': ProductColorEntity;
+    /**
+     * 
+     * @type {ProductPrintsEntity}
+     * @memberof SareeEntity
+     */
+    'print': ProductPrintsEntity;
+    /**
+     * 
+     * @type {ProductOccassionEntity}
+     * @memberof SareeEntity
+     */
+    'occassion': ProductOccassionEntity;
+    /**
+     * 
+     * @type {ProductStyleEntity}
+     * @memberof SareeEntity
+     */
+    'style': ProductStyleEntity;
 }
 /**
  * 
@@ -4578,7 +4668,7 @@ export const OrderApiApiAxiosParamCreator = function (configuration?: Configurat
          * @throws {RequiredError}
          */
         orderControllerCompleteCodOrder: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/order-details/complete-cod-order`;
+            const localVarPath = `/order-details/admin/complete-cod-order`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4680,7 +4770,45 @@ export const OrderApiApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * get all orders for user
+         * get all orders for user (user api)
+         * @summary 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        orderControllerFindAllByUser: async (userId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('orderControllerFindAllByUser', 'userId', userId)
+            const localVarPath = `/order-details/{userId}`
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * get all orders for user (admin api)
          * @summary 
          * @param {string} userId 
          * @param {*} [options] Override http request option.
@@ -4689,7 +4817,7 @@ export const OrderApiApiAxiosParamCreator = function (configuration?: Configurat
         orderControllerFindAllByUserId: async (userId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('orderControllerFindAllByUserId', 'userId', userId)
-            const localVarPath = `/order-details/{userId}`
+            const localVarPath = `/order-details/admin/{userId}`
                 .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4723,7 +4851,7 @@ export const OrderApiApiAxiosParamCreator = function (configuration?: Configurat
          * @throws {RequiredError}
          */
         orderControllerRejectOrder: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/order-details/reject`;
+            const localVarPath = `/order-details/admin/reject`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4841,7 +4969,20 @@ export const OrderApiApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * get all orders for user
+         * get all orders for user (user api)
+         * @summary 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async orderControllerFindAllByUser(userId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OrderResponse>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.orderControllerFindAllByUser(userId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['OrderApiApi.orderControllerFindAllByUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * get all orders for user (admin api)
          * @summary 
          * @param {string} userId 
          * @param {*} [options] Override http request option.
@@ -4921,7 +5062,17 @@ export const OrderApiApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.orderControllerFindAll(options).then((request) => request(axios, basePath));
         },
         /**
-         * get all orders for user
+         * get all orders for user (user api)
+         * @summary 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        orderControllerFindAllByUser(userId: string, options?: any): AxiosPromise<Array<OrderResponse>> {
+            return localVarFp.orderControllerFindAllByUser(userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * get all orders for user (admin api)
          * @summary 
          * @param {string} userId 
          * @param {*} [options] Override http request option.
@@ -5000,7 +5151,19 @@ export class OrderApiApi extends BaseAPI {
     }
 
     /**
-     * get all orders for user
+     * get all orders for user (user api)
+     * @summary 
+     * @param {string} userId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiApi
+     */
+    public orderControllerFindAllByUser(userId: string, options?: RawAxiosRequestConfig) {
+        return OrderApiApiFp(this.configuration).orderControllerFindAllByUser(userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * get all orders for user (admin api)
      * @summary 
      * @param {string} userId 
      * @param {*} [options] Override http request option.

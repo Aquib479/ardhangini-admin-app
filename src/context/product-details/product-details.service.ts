@@ -36,7 +36,12 @@ export interface ProductDetailsContext {
   categories: CategoryEntity[] | [];
   productTypes: ProductTypeEntity[] | [];
   showFileUploadModal: boolean;
-  handleImageUpload: (productId: string, productTypeId: string, image: File, description: string) => void;
+  handleImageUpload: (
+    productId: string,
+    productTypeId: string,
+    image: File,
+    description: string
+  ) => void;
 }
 
 export const productDetailsContext =
@@ -71,6 +76,18 @@ export const transformToProductSchema = (data: SareeEntity) => {
   snapshot.width = data.sareeDetails.width;
   snapshot.cgst = data.cgst;
   snapshot.sgst = data.sgst;
+
+  snapshot.isExclusive = data.isExclusive;
+  snapshot.collectionId = data?.print?.id;
+  snapshot.styleId = data?.style?.id;
+  snapshot.printId = data?.print?.id;
+  snapshot.promoId = data?.promoDetails?.id;
+  snapshot.colorId = data?.colour?.id;
+  snapshot.occassionId = data?.occassion?.id;
+
+  snapshot.maxAllowedCancellationDays = data?.maxAllowedCancellationDays;
+  snapshot.maxAllowedReturnDays = data?.maxAllowedReturnDays;
+
   return snapshot;
 };
 

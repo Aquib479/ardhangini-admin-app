@@ -8,7 +8,7 @@ export class RootContext {
 
 export const rootContext = createContext<RootContext | null>(null);
 export const config: Configuration = new Configuration();
-config.basePath = "http://localhost:3001";
+config.basePath = "http://localhost:3001";//process.env.REACT_APP_BACKEND_URL;
 export const showToast = (message: string) =>
   toast(message, { autoClose: 100 });
 export const defaultColDef = {

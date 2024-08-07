@@ -32,7 +32,7 @@ import {
 import ProductDetailsModal from "./ProductDetailsModal";
 import { getAllCategories } from "../../context/category/category.service";
 import { getAllProductTypes } from "../../context/product-type/product-type.service";
-import { RootContext, rootContext } from "../../context/root.context";
+import { config, RootContext, rootContext } from "../../context/root.context";
 import ProductFileUploadModal from "./ProductFileUploadModal";
 
 type ProductFilter = {
@@ -193,7 +193,7 @@ function ProductDetailsGrid() {
   useEffect(() => {
     getTypes();
     getCategories();
-  }, []);
+  }, [config]);
 
   useEffect(() => {
     getAll(selectedProductType!);
