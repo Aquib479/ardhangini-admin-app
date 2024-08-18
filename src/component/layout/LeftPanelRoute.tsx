@@ -35,7 +35,7 @@ function LeftPanelRoute() {
             className="nav flex-column nav-pills me-3"
             id="v-pills-tab"
             aria-orientation="vertical"
-            style={{ maxHeight: 900, overflowY: "scroll" }}
+            style={{ maxHeight: 600, overflowY: "scroll", flexFlow: "column", }}
           >
             <Link
               className={getStyle("category")}
