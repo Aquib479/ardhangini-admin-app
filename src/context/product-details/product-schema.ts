@@ -155,6 +155,7 @@ export class ProductSchema {
   "promoId"?: string;
   "occassionId"?: string;
   "isExclusive"?: boolean;
+  "isShippable"?: boolean;
   "maxAllowedReturnDays": number;
 
   "maxAllowedCancellationDays": number;

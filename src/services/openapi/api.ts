@@ -461,6 +461,12 @@ export interface CreateProductDto {
     'isExclusive': boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof CreateProductDto
+     */
+    'isShippable': boolean;
+    /**
+     * 
      * @type {string}
      * @memberof CreateProductDto
      */
@@ -678,6 +684,12 @@ export interface CreateProductResponseDto {
      * @memberof CreateProductResponseDto
      */
     'isExclusive': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateProductResponseDto
+     */
+    'isShippable': boolean;
     /**
      * 
      * @type {string}
@@ -1361,6 +1373,12 @@ export interface ProductSnapshotDto {
     'isExclusive': boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof ProductSnapshotDto
+     */
+    'isShippable': boolean;
+    /**
+     * 
      * @type {ProductCollectionEntity}
      * @memberof ProductSnapshotDto
      */
@@ -1522,6 +1540,12 @@ export interface ProductSnapshotWithUserDto {
      * @memberof ProductSnapshotWithUserDto
      */
     'isExclusive': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProductSnapshotWithUserDto
+     */
+    'isShippable': boolean;
     /**
      * 
      * @type {ProductCollectionEntity}
@@ -1979,6 +2003,12 @@ export interface SareeEntity {
     'isExclusive': boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof SareeEntity
+     */
+    'isShippable': boolean;
+    /**
+     * 
      * @type {number}
      * @memberof SareeEntity
      */
@@ -2077,7 +2107,8 @@ export const SareeFilterFilterTypeEnum = {
     Exclusive: 'exclusive',
     Occassion: 'occassion',
     Bestseller: 'bestseller',
-    Trending: 'trending'
+    Trending: 'trending',
+    Shippable: 'shippable'
 } as const;
 
 export type SareeFilterFilterTypeEnum = typeof SareeFilterFilterTypeEnum[keyof typeof SareeFilterFilterTypeEnum];

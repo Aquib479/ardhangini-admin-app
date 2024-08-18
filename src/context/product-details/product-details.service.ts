@@ -57,12 +57,12 @@ export const transformToProductSchema = (data: SareeEntity) => {
   snapshot.category = data.category.name;
   snapshot.fabricname = data.sareeDetails.fabricDetails.fabricName;
   snapshot.fabricDescription =
-    data.sareeDetails.fabricDetails.fabricDescription;
-  snapshot.washcare = data.sareeDetails.fabricDetails.washCare;
-  snapshot.isBestSeller = data.isBestSeller;
-  snapshot.isNew = data.isNew;
-  snapshot.isTrending = data.isTrending;
-  snapshot.length = data.sareeDetails.length;
+    data?.sareeDetails?.fabricDetails?.fabricDescription;
+  snapshot.washcare = data?.sareeDetails?.fabricDetails?.washCare;
+  snapshot.isBestSeller = data?.isBestSeller;
+  snapshot.isNew = data?.isNew;
+  snapshot.isTrending = data?.isTrending;
+  snapshot.length = data?.sareeDetails?.length;
   snapshot.maxQuantityPerCart = data.maxQuantityPerCart;
   snapshot.offerprice = data.offerprice;
   snapshot.productdescription = data.productDescription;
@@ -77,8 +77,8 @@ export const transformToProductSchema = (data: SareeEntity) => {
   snapshot.cgst = data.cgst;
   snapshot.sgst = data.sgst;
 
-  snapshot.isExclusive = data.isExclusive;
-  snapshot.collectionId = data?.print?.id;
+  snapshot.isExclusive = data?.isExclusive;
+  snapshot.collectionId = data?.collection?.id;
   snapshot.styleId = data?.style?.id;
   snapshot.printId = data?.print?.id;
   snapshot.promoId = data?.promoDetails?.id;
@@ -87,6 +87,7 @@ export const transformToProductSchema = (data: SareeEntity) => {
 
   snapshot.maxAllowedCancellationDays = data?.maxAllowedCancellationDays;
   snapshot.maxAllowedReturnDays = data?.maxAllowedReturnDays;
+  snapshot.isShippable = data?.isShippable;
 
   return snapshot;
 };

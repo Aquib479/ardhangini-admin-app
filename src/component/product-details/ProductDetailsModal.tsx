@@ -9,6 +9,7 @@ function ProductDetailsModal() {
     <Modal
       show={context?.showModal}
       onHide={context?.handleCloseModal}
+      onExit={context?.handleCloseModal}
       size="lg"
       centered={true}
     >

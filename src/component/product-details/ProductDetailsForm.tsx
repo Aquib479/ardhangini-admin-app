@@ -55,6 +55,22 @@ function ProductDetailsForm() {
     getAllProductOccassions();
     getAllProductStyles();
     getAllPromoDetails();
+    getManufacturers();
+    getFabrics();
+    console.trace(context?.selectedData);
+    if (context?.selectedData) {
+      getSubCategoriesByCategory(
+        context?.categories?.find((value, index, array) => {
+          return value.name === context?.selectedData?.category;
+        })?.id!
+      ).then((data) => {
+        setSubCategories(data!);
+      });
+    } else if (context?.categories) {
+      getSubCategoriesByCategory(context.categories![0]?.id!).then((data) => {
+        setSubCategories(data!);
+      });
+    }
   }, [config]);
 
   const getManufacturers = async () => {
@@ -68,19 +84,14 @@ function ProductDetailsForm() {
   const onCategorySelectionChange = useCallback(async (event: any) => {
     console.trace(event.target!.value);
     setSelectedCategory(event.target!.value);
-  }, []);
-
-  useEffect(() => {
-    getManufacturers();
-    getFabrics();
-    getAllSubCategories().then((data) => {
+    getSubCategoriesByCategory(event.target!.value).then((data) => {
       setSubCategories(data!);
     });
   }, []);
 
   const rootcontext: RootContext | null = useContext(rootContext);
   useEffect(() => {
-    console.trace(rootcontext?.appName);
+    //console.trace(rootcontext?.appName);
   }, [rootcontext]);
 
   useEffect(() => {
@@ -109,8 +120,45 @@ function ProductDetailsForm() {
           return value.fabricName === context?.selectedData?.fabricname;
         })?.id!
       );
+      //set values for other data
+      setValue(
+        "collectionId",
+        collections?.find((value, index, array) => {
+          return value.id === context?.selectedData?.collectionId;
+        })?.id!
+      );
+      setValue(
+        "colorId",
+        productColors?.find((value, index, array) => {
+          return value.id === context?.selectedData?.colorId;
+        })?.id!
+      );
+      setValue(
+        "occassionId",
+        productOccassions?.find((value, index, array) => {
+          return value.id === context?.selectedData?.occassionId;
+        })?.id!
+      );
+      setValue(
+        "printId",
+        productPrints?.find((value, index, array) => {
+          return value.id === context?.selectedData?.printId;
+        })?.id!
+      );
+      setValue(
+        "styleId",
+        productStyles?.find((value, index, array) => {
+          return value.id === context?.selectedData?.styleId;
+        })?.id!
+      );
+      setValue(
+        "promoId",
+        productPromos?.find((value, index, array) => {
+          return value.id === context?.selectedData?.promoId;
+        })?.id!
+      );
     }
-  });
+  }, [collections, context?.categories, context?.productTypes, context?.selectedData, fabrics, productColors, productOccassions, productPrints, productPromos, productStyles, setValue, subCategories]);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -680,6 +728,28 @@ function ProductDetailsForm() {
           {errors?.isExclusive && <span>This field is required</span>}
         </div>
       </div>
+      {/*product is shippable? */}
+      <div className="form-group row mb-3">
+        <label htmlFor="isShippable" className="col-sm-4 col-form-label">
+          Select as shippable :{" "}
+        </label>
+        <div className="col-sm-4">
+          <select
+            className="form-control"
+            id="isShippable"
+            {...register("isShippable", {
+              required: true,
+              value: context?.selectedData
+                ? Boolean(context?.selectedData?.isShippable)
+                : false,
+            })}
+          >
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+          {errors?.isShippable && <span>This field is required</span>}
+        </div>
+      </div>
       {/*product maxPerCart */}
       <div className="form-group row mb-3">
         <label htmlFor="maxQuantityPerCart" className="col-sm-4 col-form-label">
@@ -739,7 +809,9 @@ function ProductDetailsForm() {
                 : 3,
             })}
           />
-          {errors.maxAllowedCancellationDays && <span>This field is required</span>}
+          {errors.maxAllowedCancellationDays && (
+            <span>This field is required</span>
+          )}
         </div>
       </div>
       {/*product max days for return */}
