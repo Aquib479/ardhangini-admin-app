@@ -1,12 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import { config, showToast } from "../context/root.context";
 import { SubcategoryApi, SubcategoryEntity } from "../services/openapi";
+import useAxiosConfiguration from "./useAxiosConfiguration";
 
 const useSubCategories = () => {
-  const api: SubcategoryApi = new SubcategoryApi(config);
+  const { getAxiosConfiguration } = useAxiosConfiguration();
+
   const [subcategories, setSubCategories] = useState<SubcategoryEntity[]>([]);
   const getAllSubCategories = useMemo(
     () => () => {
+      const api: SubcategoryApi = new SubcategoryApi(getAxiosConfiguration());
       api
         .subcategoryControllerFindAll()
         .then((resp) => {
@@ -19,7 +22,7 @@ const useSubCategories = () => {
           showToast("Could not reach out to backend.");
         });
     },
-    [api]
+    [config]
   );
 
   return { subcategories, getAllSubCategories };

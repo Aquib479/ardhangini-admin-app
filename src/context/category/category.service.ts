@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { CategoryApi, CategoryEntity, Configuration, CreateCategoryDto } from "../../services/openapi";
 import { ColDef } from "ag-grid-community";
+import { getAxiosConfiguration } from "../../util/axios-configuration.util";
 
 export interface CategoryContext {
   showModal: boolean;
@@ -25,12 +26,10 @@ export const defaultColDef = {
   flex: 1,
 };
 
-const config: Configuration = new Configuration();
-config.basePath = "http://localhost:3001";
-export const categoryApi: CategoryApi = new CategoryApi(config);
 
 export const getAllCategories = async () => {
   try {
+    const categoryApi: CategoryApi = new CategoryApi(getAxiosConfiguration());
     return (await categoryApi.categoryControllerFindAll()).data;
   } catch (ex) {
     console.error(`could not fetch categories ${ex}`);

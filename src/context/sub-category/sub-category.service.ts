@@ -8,6 +8,7 @@ import {
   SubcategoryEntity,
 } from "../../services/openapi";
 import { ColDef } from "ag-grid-community";
+import { getAxiosConfiguration } from "../../util/axios-configuration.util";
 
 export interface SubCategoryContext {
   showModal: boolean;
@@ -37,11 +38,8 @@ export const defaultColDef = {
   flex: 1,
 };
 
-const config: Configuration = new Configuration();
-config.basePath = "http://localhost:3001";
-export const subCategoryApi: SubcategoryApi = new SubcategoryApi(config);
-
 export const getSubCategoriesByCategory = async (categoryId: string) => {
+  const subCategoryApi: SubcategoryApi = new SubcategoryApi(getAxiosConfiguration());
   try {
     return (
       await subCategoryApi.subcategoryControllerFindAllByCategory(categoryId)
@@ -52,6 +50,7 @@ export const getSubCategoriesByCategory = async (categoryId: string) => {
 };
 
 export const getAllSubCategories = async () => {
+  const subCategoryApi: SubcategoryApi = new SubcategoryApi(getAxiosConfiguration());
   try {
     return (
       await subCategoryApi.subcategoryControllerFindAll()

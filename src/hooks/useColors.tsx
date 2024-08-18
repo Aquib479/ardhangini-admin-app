@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { config, showToast } from "../context/root.context";
 import { ProductColorApi, ProductColorEntity } from "../services/openapi";
+import useAxiosConfiguration from "./useAxiosConfiguration";
 
 const useColors = () => {
-  const api: ProductColorApi = new ProductColorApi(config);
+  const { getAxiosConfiguration } = useAxiosConfiguration();
+  
   const [productColors, setProductColors] = useState<ProductColorEntity[]>([]);
   const getAllProductColors = useMemo(() => () => {
+    const api: ProductColorApi = new ProductColorApi(getAxiosConfiguration());
     api
       .productColorControllerGetAll()
       .then((resp) => {
@@ -17,7 +20,7 @@ const useColors = () => {
         console.log(e);
         showToast("Could not reach out to backend.");
       });
-  }, [api]);
+  }, [config]);
 
   return { productColors, getAllProductColors };
 };

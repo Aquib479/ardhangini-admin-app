@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { ProductSchema } from "./product-schema";
 import ProductImage from "../../component/common/ProductImage";
 import { ProductImageApiApi } from "../../services/openapi/api";
+import { getAxiosConfiguration } from "../../util/axios-configuration.util";
 
 const entityName = "Product details";
 export const CREATE_MODAL_TITLE = `Create ${entityName}`;
@@ -118,10 +119,6 @@ export const defaultColDef = {
   flex: 1,
 };
 
-const config: Configuration = new Configuration();
-config.basePath = "http://localhost:3001";
-const productDetailsApi: ProductApi = new ProductApi(config);
-
 export const showToast = (message: string) =>
   toast(message, { autoClose: 100 });
 
@@ -129,6 +126,9 @@ export const getAllProductsWithoutPagination = async (
   productTypeId: string
 ) => {
   try {
+    const productDetailsApi: ProductApi = new ProductApi(
+      getAxiosConfiguration()
+    );
     if (!productTypeId) return;
     return (
       await productDetailsApi.productControllerFindAll(
@@ -146,7 +146,7 @@ export const getAllProductsWithoutPagination = async (
 
 //product image update api
 
-const productImageApi: ProductImageApiApi = new ProductImageApiApi();
+
 
 export const addProductImage = async (
   description: string,
@@ -154,6 +154,7 @@ export const addProductImage = async (
   productTypeId: string,
   file: File
 ) => {
+  const productImageApi: ProductImageApiApi = new ProductImageApiApi(getAxiosConfiguration());
   try {
     await productImageApi.productImageControllerUploadProductImage(
       description,
@@ -171,6 +172,9 @@ export const getAllProductsWithPagination = async (
   nextPage: number,
   offset: number
 ) => {
+  const productDetailsApi: ProductApi = new ProductApi(
+    getAxiosConfiguration()
+  );
   if (!productTypeId) return;
   try {
     return (
@@ -187,6 +191,9 @@ export const getAllProductsWithPagination = async (
 };
 
 export const createProductDetails = async (payload: CreateProductDto) => {
+  const productDetailsApi: ProductApi = new ProductApi(
+    getAxiosConfiguration()
+  );
   try {
     return (await productDetailsApi.productControllerCreate(payload)).data;
   } catch (e) {
@@ -198,6 +205,9 @@ export const updateProductDetails = async (
   id: string,
   payload: CreateProductDto
 ) => {
+  const productDetailsApi: ProductApi = new ProductApi(
+    getAxiosConfiguration()
+  );
   try {
     payload.productId = id;
     return (await productDetailsApi.productControllerCreate(payload)).data;
@@ -210,6 +220,9 @@ export const deleteProductDetails = async (
   productTypeId: string,
   id: string
 ) => {
+  const productDetailsApi: ProductApi = new ProductApi(
+    getAxiosConfiguration()
+  );
   try {
     return (await productDetailsApi.productControllerRemove(productTypeId, id))
       .data;

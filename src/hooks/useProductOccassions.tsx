@@ -4,14 +4,19 @@ import {
   ProductOccassionApi,
   ProductOccassionEntity,
 } from "../services/openapi";
+import useAxiosConfiguration from "./useAxiosConfiguration";
 
 const useProductOccassions = () => {
-  const api: ProductOccassionApi = new ProductOccassionApi(config);
+  const { getAxiosConfiguration } = useAxiosConfiguration();
+
   const [productOccassions, setProductOccassions] = useState<
     ProductOccassionEntity[]
   >([]);
   const getAllProductOccassions = useMemo(
     () => () => {
+      const api: ProductOccassionApi = new ProductOccassionApi(
+        getAxiosConfiguration()
+      );
       api
         .productOccassionControllerGetAll()
         .then((resp) => {
@@ -24,7 +29,7 @@ const useProductOccassions = () => {
           showToast("Could not reach out to backend.");
         });
     },
-    [api]
+    [config]
   );
 
   return { productOccassions, getAllProductOccassions };

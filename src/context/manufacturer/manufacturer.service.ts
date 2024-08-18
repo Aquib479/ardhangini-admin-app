@@ -7,6 +7,7 @@ import {
 } from "../../services/openapi";
 import { ColDef } from "ag-grid-community";
 import { toast } from "react-toastify";
+import { getAxiosConfiguration } from "../../util/axios-configuration.util";
 
 export interface ManufacturerContext {
   showModal: boolean;
@@ -33,15 +34,13 @@ export const defaultColDef = {
   flex: 1,
 };
 
-const config: Configuration = new Configuration();
-config.basePath = "http://localhost:3001";
-const manufacturerApi: ManufacturerApiApi = new ManufacturerApiApi(config);
 
 export const showToast = (message: string) =>
   toast(message, { autoClose: 100 });
 
 export const getAllManufacturers = async () => {
   try {
+    const manufacturerApi: ManufacturerApiApi = new ManufacturerApiApi(getAxiosConfiguration());
     return (await manufacturerApi.manufacturerControllerFindAll()).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -50,6 +49,7 @@ export const getAllManufacturers = async () => {
 
 export const createManufacturer = async (payload: CreateManufacturerDto) => {
   try {
+    const manufacturerApi: ManufacturerApiApi = new ManufacturerApiApi(getAxiosConfiguration());
     return (await manufacturerApi.manufacturerControllerCreate(payload)).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -61,6 +61,7 @@ export const updateManufacturer = async (
   payload: CreateManufacturerDto
 ) => {
   try {
+    const manufacturerApi: ManufacturerApiApi = new ManufacturerApiApi(getAxiosConfiguration());
     return (await manufacturerApi.manufacturerControllerUpdate(id, payload))
       .data;
   } catch (e) {
@@ -72,6 +73,7 @@ export const deleteManufacturer = async (
     id: string
   ) => {
     try {
+      const manufacturerApi: ManufacturerApiApi = new ManufacturerApiApi(getAxiosConfiguration());
       return (await manufacturerApi.manufacturerControllerRemove(id))
         .data;
     } catch (e) {

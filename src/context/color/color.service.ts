@@ -6,6 +6,7 @@ import {
 } from "../../services/openapi";
 import { ColDef } from "ag-grid-community";
 import { config, showToast } from "../root.context";
+import { getAxiosConfiguration } from "../../util/axios-configuration.util";
 
 export const CREATE_MODAL_TITLE = "Create Colour";
 
@@ -34,12 +35,13 @@ export const defaultColDef = {
 };
 
 
-const api: ProductColorApi = new ProductColorApi(config);
+
 
 
 
 export const getAllColors = async () => {
   try {
+    const api: ProductColorApi = new ProductColorApi(getAxiosConfiguration());
     return (await api.productColorControllerGetAll()).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -48,6 +50,7 @@ export const getAllColors = async () => {
 
 export const createColor = async (payload: CreateProductColorDto) => {
   try {
+    const api: ProductColorApi = new ProductColorApi(getAxiosConfiguration());
     return (await api.productColorControllerCreate(payload)).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -56,6 +59,7 @@ export const createColor = async (payload: CreateProductColorDto) => {
 
 export const updateColor = async (id: string, payload: CreateProductColorDto) => {
   try {
+    const api: ProductColorApi = new ProductColorApi(getAxiosConfiguration());
     payload.id = id;
     return (await api.productColorControllerUpdate(payload)).data;
   } catch (e) {
@@ -65,6 +69,7 @@ export const updateColor = async (id: string, payload: CreateProductColorDto) =>
 
 export const deleteColor = async (id: string) => {
   try {
+    const api: ProductColorApi = new ProductColorApi(getAxiosConfiguration());
     return (await api.productColorControllerRemove(id)).data;
   } catch (e) {
     showToast("Could not reach out to backend.");

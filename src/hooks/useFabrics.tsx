@@ -1,13 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import { config, showToast } from "../context/root.context";
 import { FabricDetailsApiApi, FabricDetailsEntity } from "../services/openapi";
+import useAxiosConfiguration from "./useAxiosConfiguration";
 
 const useFabrics = () => {
-  const api: FabricDetailsApiApi = new FabricDetailsApiApi(config);
+  const { getAxiosConfiguration } = useAxiosConfiguration();
+  
   const [productFabrics, setProductFabrics] = useState<FabricDetailsEntity[]>(
     []
   );
   const getAllProductFabrics = useMemo(() =>  () => {
+    const api: FabricDetailsApiApi = new FabricDetailsApiApi(getAxiosConfiguration());
     api
       .fabricControllerFindAll()
       .then((resp) => {
@@ -19,7 +22,7 @@ const useFabrics = () => {
         console.log(e);
         showToast("Could not reach out to backend.");
       });
-  },[api]);
+  },[config]);
 
   return { productFabrics, getAllProductFabrics };
 };

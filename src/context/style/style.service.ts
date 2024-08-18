@@ -6,6 +6,7 @@ import {
   ProductStyleApi,
   ProductStyleEntity,
 } from "../../services/openapi";
+import { getAxiosConfiguration } from "../../util/axios-configuration.util";
 
 export const CREATE_MODAL_TITLE = "Create Style";
 
@@ -21,8 +22,9 @@ export interface ProductStyleContext {
   showSpinner: boolean;
 }
 
-export const productStyleContext =
-  createContext<ProductStyleContext | null>(null);
+export const productStyleContext = createContext<ProductStyleContext | null>(
+  null
+);
 
 // Column Definitions: Defines the columns to be displayed.
 export const colDefs: ColDef[] = [
@@ -31,10 +33,9 @@ export const colDefs: ColDef[] = [
   { field: "description" },
 ];
 
-const api: ProductStyleApi = new ProductStyleApi(config);
-
 export const getAllStyles = async () => {
   try {
+    const api: ProductStyleApi = new ProductStyleApi(getAxiosConfiguration());
     return (await api.productStyleControllerGetAll()).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -43,6 +44,7 @@ export const getAllStyles = async () => {
 
 export const createStyle = async (payload: CreateProductStyleDto) => {
   try {
+    const api: ProductStyleApi = new ProductStyleApi(getAxiosConfiguration());
     return (await api.productStyleControllerCreate(payload)).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -54,6 +56,7 @@ export const updateStyle = async (
   payload: CreateProductStyleDto
 ) => {
   try {
+    const api: ProductStyleApi = new ProductStyleApi(getAxiosConfiguration());
     payload.id = id;
     return (await api.productStyleControllerUpdate(payload)).data;
   } catch (e) {
@@ -63,6 +66,7 @@ export const updateStyle = async (
 
 export const deleteStyle = async (id: string) => {
   try {
+    const api: ProductStyleApi = new ProductStyleApi(getAxiosConfiguration());
     return (await api.productStyleControllerRemove(id)).data;
   } catch (e) {
     showToast("Could not reach out to backend.");

@@ -6,6 +6,7 @@ import {
   ProductCollectionApi,
   ProductCollectionEntity,
 } from "../../services/openapi";
+import { getAxiosConfiguration } from "../../util/axios-configuration.util";
 
 export const CREATE_MODAL_TITLE = "Create Collection";
 
@@ -31,10 +32,11 @@ export const colDefs: ColDef[] = [
   { field: "description" },
 ];
 
-const api: ProductCollectionApi = new ProductCollectionApi(config);
+
 
 export const getAllCollections = async () => {
   try {
+    const api: ProductCollectionApi = new ProductCollectionApi(getAxiosConfiguration());
     return (await api.productColelctionControllerGetAll()).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -43,6 +45,7 @@ export const getAllCollections = async () => {
 
 export const createCollection = async (payload: CreateProductCollectionDto) => {
   try {
+    const api: ProductCollectionApi = new ProductCollectionApi(getAxiosConfiguration());
     return (await api.productColelctionControllerCreate(payload)).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -54,6 +57,7 @@ export const updateCollection = async (
   payload: CreateProductCollectionDto
 ) => {
   try {
+    const api: ProductCollectionApi = new ProductCollectionApi(getAxiosConfiguration());
     payload.id = id;
     return (await api.productColelctionControllerUpdate(payload)).data;
   } catch (e) {
@@ -63,6 +67,7 @@ export const updateCollection = async (
 
 export const deleteCollection = async (id: string) => {
   try {
+    const api: ProductCollectionApi = new ProductCollectionApi(getAxiosConfiguration());
     return (await api.productColelctionControllerRemove(id)).data;
   } catch (e) {
     showToast("Could not reach out to backend.");

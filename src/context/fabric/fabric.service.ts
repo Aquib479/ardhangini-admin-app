@@ -7,6 +7,7 @@ import {
 } from "../../services/openapi";
 import { ColDef } from "ag-grid-community";
 import { toast } from "react-toastify";
+import { getAxiosConfiguration } from "../../util/axios-configuration.util";
 
 export const CREATE_MODAL_TITLE = "Create Fabric";
 
@@ -36,15 +37,12 @@ export const defaultColDef = {
   flex: 1,
 };
 
-const config: Configuration = new Configuration();
-config.basePath = "http://localhost:3001";
-const fabricApi: FabricDetailsApiApi = new FabricDetailsApiApi(config);
-
 export const showToast = (message: string) =>
   toast(message, { autoClose: 100 });
 
 export const getAllFabrics = async () => {
   try {
+    const fabricApi: FabricDetailsApiApi = new FabricDetailsApiApi(getAxiosConfiguration());
     return (await fabricApi.fabricControllerFindAll()).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -53,6 +51,7 @@ export const getAllFabrics = async () => {
 
 export const createFabric = async (payload: CreateFabricDto) => {
   try {
+    const fabricApi: FabricDetailsApiApi = new FabricDetailsApiApi(getAxiosConfiguration());
     return (await fabricApi.fabricControllerCreate(payload)).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -61,6 +60,7 @@ export const createFabric = async (payload: CreateFabricDto) => {
 
 export const updateFabric = async (id: string, payload: CreateFabricDto) => {
   try {
+    const fabricApi: FabricDetailsApiApi = new FabricDetailsApiApi(getAxiosConfiguration());
     return (await fabricApi.fabricControllerUpdate(id, payload)).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -69,6 +69,7 @@ export const updateFabric = async (id: string, payload: CreateFabricDto) => {
 
 export const deleteFabric = async (id: string) => {
   try {
+    const fabricApi: FabricDetailsApiApi = new FabricDetailsApiApi(getAxiosConfiguration());
     return (await fabricApi.fabricControllerRemove(id)).data;
   } catch (e) {
     showToast("Could not reach out to backend.");

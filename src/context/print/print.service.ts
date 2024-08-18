@@ -6,6 +6,7 @@ import {
   ProductPrintsApi,
   ProductPrintsEntity,
 } from "../../services/openapi";
+import { getAxiosConfiguration } from "../../util/axios-configuration.util";
 
 export const CREATE_MODAL_TITLE = "Create Print";
 
@@ -31,10 +32,11 @@ export const colDefs: ColDef[] = [
   { field: "description" },
 ];
 
-const api: ProductPrintsApi = new ProductPrintsApi(config);
+
 
 export const getAllPrints = async () => {
   try {
+    const api: ProductPrintsApi = new ProductPrintsApi(getAxiosConfiguration());
     return (await api.productPrintsControllerGetAll()).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -43,6 +45,7 @@ export const getAllPrints = async () => {
 
 export const createPrint = async (payload: CreateProductPrintDto) => {
   try {
+    const api: ProductPrintsApi = new ProductPrintsApi(getAxiosConfiguration());
     return (await api.productPrintsControllerCreate(payload)).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -54,6 +57,7 @@ export const updatePrints = async (
   payload: CreateProductPrintDto
 ) => {
   try {
+    const api: ProductPrintsApi = new ProductPrintsApi(getAxiosConfiguration());
     payload.id = id;
     return (await api.productPrintsControllerUpdate(payload)).data;
   } catch (e) {
@@ -63,6 +67,7 @@ export const updatePrints = async (
 
 export const deletePrints = async (id: string) => {
   try {
+    const api: ProductPrintsApi = new ProductPrintsApi(getAxiosConfiguration());
     return (await api.productPrintsControllerRemove(id)).data;
   } catch (e) {
     showToast("Could not reach out to backend.");

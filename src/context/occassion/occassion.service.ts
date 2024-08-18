@@ -6,6 +6,7 @@ import {
   ProductOccassionApi,
   ProductOccassionEntity,
 } from "../../services/openapi";
+import { getAxiosConfiguration } from "../../util/axios-configuration.util";
 
 export const CREATE_MODAL_TITLE = "Create Occassion";
 
@@ -31,10 +32,11 @@ export const colDefs: ColDef[] = [
   { field: "description" },
 ];
 
-const api: ProductOccassionApi = new ProductOccassionApi(config);
+
 
 export const getAllOccassions = async () => {
   try {
+    const api: ProductOccassionApi = new ProductOccassionApi(getAxiosConfiguration());
     return (await api.productOccassionControllerGetAll()).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -43,6 +45,7 @@ export const getAllOccassions = async () => {
 
 export const createOccassion = async (payload: CreateProductOccassionDto) => {
   try {
+    const api: ProductOccassionApi = new ProductOccassionApi(getAxiosConfiguration());
     return (await api.productOccassionControllerCreate(payload)).data;
   } catch (e) {
     showToast("Could not reach out to backend.");
@@ -54,6 +57,7 @@ export const updateOccassion = async (
   payload: CreateProductOccassionDto
 ) => {
   try {
+    const api: ProductOccassionApi = new ProductOccassionApi(getAxiosConfiguration());
     payload.id = id;
     return (await api.productOccassionControllerUpdate(payload)).data;
   } catch (e) {
@@ -63,6 +67,7 @@ export const updateOccassion = async (
 
 export const deleteOccassion = async (id: string) => {
   try {
+    const api: ProductOccassionApi = new ProductOccassionApi(getAxiosConfiguration());
     return (await api.productOccassionControllerRemove(id)).data;
   } catch (e) {
     showToast("Could not reach out to backend.");

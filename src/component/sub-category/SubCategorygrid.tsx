@@ -4,21 +4,22 @@ import { AgGridReact } from "ag-grid-react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 import {
+  CategoryApi,
   CreateSubcategoryDto,
+  SubcategoryApi,
   SubcategoryEntity,
 } from "../../services/openapi/api";
 import { CategoryEntity } from "../../services/openapi/api";
 import { toast, ToastContainer } from "react-toastify";
-import { categoryApi } from "../../context/category/category.service";
 import {
   colDefs,
   defaultColDef,
-  subCategoryApi,
   subCategoryContext,
   SubCategoryContext,
 } from "../../context/sub-category/sub-category.service";
 import CategoryFilter from "./CategoryFilter";
 import SubCategoryModal from "./subcategoryModal";
+import { getAxiosConfiguration } from "../../util/axios-configuration.util";
 
 function SubCategoryGrid() {
   
@@ -62,6 +63,7 @@ function SubCategoryGrid() {
 
   const getAllSubCategories = async () => {
     try {
+      const subCategoryApi: SubcategoryApi = new SubcategoryApi(getAxiosConfiguration());
       setRowData((await subCategoryApi.subcategoryControllerFindAll()).data);
     } catch (ex) {
       console.error(ex);
@@ -70,6 +72,7 @@ function SubCategoryGrid() {
 
   const getAllSubCategoriesByCategory = async () => {
     try {
+      const subCategoryApi: SubcategoryApi = new SubcategoryApi(getAxiosConfiguration());
       setRowData(
         (
           await subCategoryApi.subcategoryControllerFindAllByCategory(
@@ -85,6 +88,7 @@ function SubCategoryGrid() {
   const getAllCategories = async () => {
     console.log("calling get all acategories.");
     try {
+      const categoryApi: CategoryApi = new CategoryApi(getAxiosConfiguration());
       setCategories((await categoryApi.categoryControllerFindAll()).data);
     } catch (ex) {
       console.error(ex);
@@ -102,6 +106,7 @@ function SubCategoryGrid() {
 
   const createSubCategory = async (payLoad: CreateSubcategoryDto) => {
     try {
+      const subCategoryApi: SubcategoryApi = new SubcategoryApi(getAxiosConfiguration());
       await subCategoryApi.subcategoryControllerCreate(payLoad);
     } catch (ex) {
       console.error(ex);
@@ -114,6 +119,7 @@ function SubCategoryGrid() {
   ) => {
     console.log("calling update subcategory");
     try {
+      const subCategoryApi: SubcategoryApi = new SubcategoryApi(getAxiosConfiguration());
       await subCategoryApi.subcategoryControllerUpdate(id, payLoad);
       showToast("Updated!");
     } catch (ex) {

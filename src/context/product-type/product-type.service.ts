@@ -7,6 +7,7 @@ import {
 } from "../../services/openapi";
 import { ColDef } from "ag-grid-community";
 import { toast } from "react-toastify";
+import { getAxiosConfiguration } from "../../util/axios-configuration.util";
 
 const entityName = 'ProductType';
 export const CREATE_MODAL_TITLE = `Create ${entityName}`;
@@ -36,14 +37,11 @@ export const defaultColDef = {
   flex: 1,
 };
 
-const config: Configuration = new Configuration();
-config.basePath = "http://localhost:3001";
-const productTypeApi: ProductTypeApi = new ProductTypeApi(config);
-
 export const showToast = (message: string) =>
   toast(message, { autoClose: 100 });
 
 export const getAllProductTypes = async () => {
+  const productTypeApi: ProductTypeApi = new ProductTypeApi(getAxiosConfiguration());
   try {
     return (await productTypeApi.productTypeControllerFindAll()).data;
   } catch (e) {
@@ -52,6 +50,7 @@ export const getAllProductTypes = async () => {
 };
 
 export const createProductType = async (payload: CreateProductTypeDto) => {
+  const productTypeApi: ProductTypeApi = new ProductTypeApi(getAxiosConfiguration());
   try {
     return (await productTypeApi.productTypeControllerCreate(payload)).data;
   } catch (e) {
@@ -60,6 +59,7 @@ export const createProductType = async (payload: CreateProductTypeDto) => {
 };
 
 export const updateProductType = async (id: string, payload: CreateProductTypeDto) => {
+  const productTypeApi: ProductTypeApi = new ProductTypeApi(getAxiosConfiguration());
   try {
     return (await productTypeApi.productTypeControllerUpdate(id, payload)).data;
   } catch (e) {
@@ -68,6 +68,7 @@ export const updateProductType = async (id: string, payload: CreateProductTypeDt
 };
 
 export const deleteProductType = async (id: string) => {
+  const productTypeApi: ProductTypeApi = new ProductTypeApi(getAxiosConfiguration());
   try {
     return (await productTypeApi.productTypeControllerRemove(id)).data;
   } catch (e) {

@@ -5,11 +5,13 @@ import {
   PromoDetailsApi,
   PromoDetailsEntity,
 } from "../services/openapi";
+import useAxiosConfiguration from "./useAxiosConfiguration";
 
 const usePromoDetails = () => {
-  const api: PromoDetailsApi = new PromoDetailsApi(config);
+  const { getAxiosConfiguration } = useAxiosConfiguration();
   const [productPromos, setProductPromos] = useState<PromoDetailsEntity[]>([]);
   const getAllPromoDetails = useMemo(() => () => {
+    const api: PromoDetailsApi = new PromoDetailsApi(getAxiosConfiguration());
     api
       .promoDetailsControllerGetAll()
       .then((resp) => {
@@ -21,9 +23,10 @@ const usePromoDetails = () => {
         console.log(e);
         showToast("Could not reach out to backend.");
       });
-  },[api]);
+  },[config]);
 
   const editPromoDetails = (payLoad: CreatePromoDto) => {
+    const api: PromoDetailsApi = new PromoDetailsApi(getAxiosConfiguration());
     api
       .promoDetailsControllerCreateOrupdate(payLoad)
       .then(() => {
@@ -36,6 +39,7 @@ const usePromoDetails = () => {
   };
 
   const removePromoDetails = (promoId: string) => {
+    const api: PromoDetailsApi = new PromoDetailsApi(getAxiosConfiguration());
     api
       .promoDetailsControllerRemove(promoId)
       .then(() => {

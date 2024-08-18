@@ -4,16 +4,16 @@ import { AgGridReact } from "ag-grid-react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 import CategoryModal from "./categoryModal";
-import { CreateCategoryDto } from "../../services/openapi/api";
+import { CategoryApi, CreateCategoryDto } from "../../services/openapi/api";
 import { CategoryEntity } from "../../services/openapi/api";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import {
-  categoryApi,
   CategoryContext,
   colDefs,
   context,
   defaultColDef,
 } from "../../context/category/category.service";
+import { getAxiosConfiguration } from "../../util/axios-configuration.util";
 
 function CategoryGrid() {
   // Row Data: The data to be displayed.
@@ -51,6 +51,7 @@ function CategoryGrid() {
 
   const getAllCategories = async () => {
     try {
+      const categoryApi: CategoryApi = new CategoryApi(getAxiosConfiguration());
       setRowData((await categoryApi.categoryControllerFindAll()).data);
     } catch (ex) {
       console.error(ex);
@@ -60,6 +61,7 @@ function CategoryGrid() {
   const createCategory = async (payLoad: CreateCategoryDto) => {
     console.log("calling create category");
     try {
+      const categoryApi: CategoryApi = new CategoryApi(getAxiosConfiguration());
       await categoryApi.categoryControllerCreate(payLoad);
       showToast("Created!");
     } catch (ex) {
@@ -70,6 +72,7 @@ function CategoryGrid() {
 
   const updateCategory = async (id: string, payLoad: CreateCategoryDto) => {
     try {
+      const categoryApi: CategoryApi = new CategoryApi(getAxiosConfiguration());
       await categoryApi.categoryControllerUpdate(id, payLoad);
       showToast("Updated!");
     } catch (ex) {

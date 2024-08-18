@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { config, showToast } from "../context/root.context";
 import { CategoryApi, CategoryEntity } from "../services/openapi";
+import useAxiosConfiguration from "./useAxiosConfiguration";
 
 const useCategories = () => {
-  const api: CategoryApi = new CategoryApi(config);
+  const { getAxiosConfiguration } = useAxiosConfiguration();
+  
   const [categories, setCategories] = useState<CategoryEntity[]>([]);
   const getAllCategories = useMemo(() => () => {
+    const api: CategoryApi = new CategoryApi(getAxiosConfiguration());
     return api
       .categoryControllerFindAll()
       .then((resp) => {
@@ -17,7 +20,7 @@ const useCategories = () => {
         console.log(e);
         showToast("Could not reach out to backend.");
       });
-  }, [api]);
+  }, [config]);
 
   return { categories, getAllCategories };
 };
