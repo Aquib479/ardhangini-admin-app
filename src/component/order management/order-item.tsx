@@ -55,7 +55,7 @@ function OrderItem({ orders }: OrderItemProps) {
                   </Badge>
                 </div>
                 <strong className="font-medium">
-                  ₹{order.paymentInfo.totalAmount}
+                  ₹{Math.ceil(order.paymentInfo.totalAmount)}
                 </strong>
               </div>
 
@@ -90,9 +90,7 @@ function OrderItem({ orders }: OrderItemProps) {
                   <Button
                     variant="default"
                     className="h-7 text-xs bg-blue-600 font-semibold flex gap-x-1 px-3"
-                    onClick={() =>
-                      navigate(`/order-detail/${order.orderId}`)
-                    }
+                    onClick={() => navigate(`/order-detail/${order.orderId}`)}
                   >
                     <Eye size={14} />
                     View

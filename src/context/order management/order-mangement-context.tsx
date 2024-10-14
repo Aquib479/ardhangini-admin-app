@@ -2,7 +2,7 @@
 import React, { createContext, useState, useEffect, ReactNode } from "react";
 import { fetchOrders, updateOrder } from "./orders.service";
 import { DateRange } from "react-day-picker";
-// import data from "./data.json";
+import data from "./data.json";
 
 interface PaymentInfo {
   id: string;
@@ -67,7 +67,7 @@ export const OrderContext = createContext<OrderContextProps | undefined>(
 export const OrderProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [orders, setOrders] = useState<Order[]>([]);
+  const [orders, setOrders] = useState<Order[]>(data);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterDate, setFilterDate] = useState<DateRange | undefined>(
     undefined
@@ -140,7 +140,7 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <OrderContext.Provider
       value={{
-        orders: filteredOrders,
+        orders: data,
         searchQuery,
         setSearchQuery,
         filterDate,

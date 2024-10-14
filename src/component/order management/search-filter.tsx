@@ -49,11 +49,8 @@ function SearchFilterEdit({
             <SelectContent>
               <SelectGroup>
                 {/* <SelectLabel>Fruits</SelectLabel> */}
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
+                <SelectItem value="pending">Pending</SelectItem>
+                <SelectItem value="paid">Paid</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>

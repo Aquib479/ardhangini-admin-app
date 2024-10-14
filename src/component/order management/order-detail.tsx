@@ -64,7 +64,7 @@ const OrderDetail = () => {
                       </div>
                     </div>
                     <strong className="pr-5 font-medium">
-                      {item.offerPrice}
+                      ₹{Math.ceil(Number(item.offerPrice))}
                     </strong>
                   </div>
                 ))}
@@ -76,15 +76,25 @@ const OrderDetail = () => {
                       <span className="text-slate-500 text-center">
                         SubTotal
                       </span>
-                      <strong className="font-medium">$240.65</strong>
+                      <strong className="font-medium">
+                        ₹{orderItems.totalActualPrice}
+                      </strong>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-slate-500">Shipping</span>
                       <strong className="font-medium">$40.65</strong>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-500">eTax</span>
-                      <strong className="font-medium">$240.65</strong>
+                      <span className="text-slate-500">cgst</span>
+                      <strong className="font-medium">
+                        ₹{Math.ceil(Number(orderItems.totalCgst))}
+                      </strong>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-slate-500">sgst</span>
+                      <strong className="font-medium">
+                        ₹{Math.ceil(Number(orderItems.totalSgst))}
+                      </strong>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="font-semibold">Total</span>
@@ -102,7 +112,7 @@ const OrderDetail = () => {
 
             {/* customer-detail -> personal-detail, shipping-address, payment-detail */}
             <div className="bg-white w-1/3 rounded-md flex-grow h-full">
-              <CustomerInfo />
+              <CustomerInfo address={orderItems.billingAddress} />
             </div>
           </div>
         </div>

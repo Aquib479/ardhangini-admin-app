@@ -1,7 +1,11 @@
 import { Box, Eye, MapPin } from "lucide-react";
 import { Badge } from "../ui/badge";
 
-const CustomerInfo = () => {
+interface AddressProps {
+  address: string;
+}
+
+const CustomerInfo = ({ address }: AddressProps) => {
   return (
     <>
       <div className="customer-detail-component">
@@ -37,24 +41,24 @@ const CustomerInfo = () => {
               <div className="grid grid-cols-3">
                 <span className="text-slate-500">Address:</span>
                 <span className="font-medium col-span-2">
-                  Leura Petkova 3400 Montana, Bulgaria
+                  {address.split(",")[0]}
                 </span>
               </div>
               <div className="grid grid-cols-3">
                 <span className="text-slate-500">Phone:</span>
-                <span className="font-medium col-span-2">+12-2344-2423-23</span>
+                <span className="font-medium col-span-2">{address.split(",")[6]}</span>
               </div>
               <div className="grid grid-cols-3">
                 <span className="text-slate-500">City:</span>
-                <span className="font-medium col-span-2">Montana</span>
+                <span className="font-medium col-span-2">{address.split(",")[3]}</span>
               </div>
               <div className="grid grid-cols-3">
                 <span className="text-slate-500">State:</span>
-                <span className="font-medium col-span-2">Bulgeria</span>
+                <span className="font-medium col-span-2">{address.split(",")[4]}</span>
               </div>
               <div className="grid grid-cols-3">
                 <span className="text-slate-500">PinCode:</span>
-                <span className="font-medium col-span-2">3131-414</span>
+                <span className="font-medium col-span-2">{address.split(",")[5]}</span>
               </div>
             </div>
             <div className="flex items-center gap-2 text-blue-600 py-2 cursor-pointer">
@@ -66,7 +70,9 @@ const CustomerInfo = () => {
 
           {/* payment info */}
           <div className="px-4 pt-3">
-            <h1 className="text-lg font-semibold text-[1rem]">Payment Details</h1>
+            <h1 className="text-lg font-semibold text-[1rem]">
+              Payment Details
+            </h1>
             <div className="space-y-1.5 mt-2">
               <div className="grid grid-cols-3">
                 <span className="text-slate-500">Method:</span>
